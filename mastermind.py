@@ -7,30 +7,30 @@ class mastermind(Frame):
     def __init__(self,boss=None):
         Frame.__init__(self,boss)
         self.pack()
-        self.couleurs=['#ffffff','#000000','#ff0000','#00ff00','#0000ff','#ffff00']#,'#00aaee','#ffaaee']
+        #### valeurs arbitraires ####
+        self.couleurs=['#ffffff','#000000','#ff0000','#00ff00','#0000ff','#ffff00']
         self.couleur_vide='#553823'
         self.nb_emplacements=4
+        self.dico_reponce = {0:'#ffffff',1: '#000000'}
+        #### initialisations ####
         self.emplacements=[]
         self.emplacement_actif=0
         self.essais = -1
         self.prec_essai = []
-        self.dico_reponce = {0:'#ffffff',1: '#000000'}
         self.emplacements_prec_essai=[]
         self.master.title('codage')
-
+        #### valeurs précalculées ####
         self.nb_couleurs=len(self.couleurs)
         self.nb_max=max(self.nb_emplacements,self.nb_couleurs-1)
         self.endroit_emplacement=abs(self.nb_couleurs - self.nb_emplacements) // 2
-
+        #### intialisation GUI ####
         for i in range(self.nb_emplacements):
             self.emplacements_prec_essai.append(Frame(self, height=75,width=75))
             self.emplacements_prec_essai[-1].grid(row=1, column=self.endroit_emplacement + i, sticky=NSEW)
             self.emplacements.append(Frame(self, height=75,width=75, bg=self.couleur_vide))
             self.emplacements[-1].grid(row=0, column=self.endroit_emplacement + i, sticky=EW)
-
         for i,c in enumerate(self.couleurs):
             Button(self, background=c,width=10,height=2,command=lambda couleur=i:self.jouer(couleur)).grid(row=2, column=i, sticky=EW)
-
         Button(self,text='annuler', command=self.annuler).grid(row=3, column=self.nb_max//2,columnspan=1 if self.nb_max%2 else 2)
         Button(self, text='rejouer', command=self.rejouer).grid(row=3, column=0)
         Button(self, text='quiter', command=self.quit).grid(row=3, column=self.nb_max)
