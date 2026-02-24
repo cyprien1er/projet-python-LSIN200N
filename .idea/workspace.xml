@@ -26,7 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eff1dbb4-e10d-4ece-99b2-e8534ef815fb" name="Default Changelist" comment="" />
+    <list default="true" id="eff1dbb4-e10d-4ece-99b2-e8534ef815fb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mastermind.py" beforeDir="false" afterPath="$PROJECT_DIR$/mastermind.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +37,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/987654321gv/projet-python-LSIN200N" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="39vn4aswggZevOjY9VxUPEBLo2s" />
   <component name="ProjectViewState">
@@ -89,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1771773143326</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="anotation des intialisations">
+      <created>1771774578786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771774578786</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,37 +142,46 @@
     <MESSAGE value="restructuration et modification pour que modifier le nombre de couleurs/d'emplacements" />
     <MESSAGE value="test" />
     <MESSAGE value="restructuration et modularisation&#10;&#10;restructuration et modification pour que modifier le nombre de couleurs/d'emplacements (fonctionne pas encore)" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructuration et modularisation&#10;&#10;restructuration et modification pour que modifier le nombre de couleurs/d'emplacements (fonctionne pas encore)" />
+    <MESSAGE value="anotation des intialisations" />
+    <option name="LAST_COMMIT_MESSAGE" value="anotation des intialisations" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1771773782007">
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1771774632724">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1771773782007" />
-    <state width="1259" height="204" key="GridCell.Tab.0.bottom" timestamp="1771772813626">
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1771774632724" />
+    <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1771943640872">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1771772813626" />
-    <state width="1259" height="204" key="GridCell.Tab.0.center" timestamp="1771772813626">
+    <state width="1259" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1771943640872" />
+    <state width="1259" height="163" key="GridCell.Tab.0.center" timestamp="1771943640872">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="204" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1771772813626" />
-    <state width="1259" height="204" key="GridCell.Tab.0.left" timestamp="1771772813626">
+    <state width="1259" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1771943640872" />
+    <state width="1259" height="163" key="GridCell.Tab.0.left" timestamp="1771943640872">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="204" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1771772813626" />
-    <state width="1259" height="204" key="GridCell.Tab.0.right" timestamp="1771772813626">
+    <state width="1259" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1771943640872" />
+    <state width="1259" height="163" key="GridCell.Tab.0.right" timestamp="1771943640872">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="204" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1771772813626" />
+    <state width="1259" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1771943640872" />
+    <state x="361" y="61" key="RollbackChangesDialog" timestamp="1771773991175">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="361" y="61" key="RollbackChangesDialog/0.0.1280.680@0.0.1280.680" timestamp="1771773991175" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1771773047098">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1771773047098" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1771773193320">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1771774635686">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1771773193320" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1771774635686" />
+    <state x="381" y="53" key="git4idea.branch.GitSmartOperationDialog" timestamp="1771773963703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="381" y="53" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.680@0.0.1280.680" timestamp="1771773963703" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1771772943835">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
