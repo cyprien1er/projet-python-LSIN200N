@@ -4,6 +4,7 @@
 from tkinter import *
 import random
 from math import sqrt, ceil
+from collections import Counter
 
 
 class Mastermind(Frame):
@@ -15,6 +16,7 @@ class Mastermind(Frame):
         self.couleur_vide = '#553823'
         self.nb_emplacements = 4
         self.dico_reponce = {0: '#ffffff', 1: '#000000'}
+        self.version_alt=True
         #### initialisations ####
         self.emplacements = []
         self.emplacement_actif = 0
@@ -54,7 +56,7 @@ class Mastermind(Frame):
         self.emplacement_actif += 1
         self.prec_essai.append(couleur)
         if self.emplacement_actif != self.nb_emplacements: return
-
+        counter_local=self.count_reponse
         self.emplacement_actif = 0
         self.essais += 1
         if self.essais:
@@ -66,8 +68,10 @@ class Mastermind(Frame):
             for i, e in enumerate(self.prec_essai):
                 if self.reponse[i] == e:
                     rep.append(1)
-                elif e in self.reponse:
+                elif e in counter_local:
                     rep.append(0)
+                    if not self.version_alt:
+                        counter_local-=Counter((e,))
                 else:
                     rep.append(None)
             rep.extend([None] * ((self.side ** 2) - len(rep)))
@@ -112,6 +116,7 @@ class Mastermind(Frame):
     def enregister_reponce(self, reponse):
         self.master.title('jeu')
         self.reponse = reponse
+        self.count_reponse=Counter(reponse)
         self.can = Canvas(self, height=75, bg='#aaaaaa', width=75)
         self.can.grid(row=1, column=self.endroit_emplacement - 1, sticky=EW)
         self.ale.destroy()
