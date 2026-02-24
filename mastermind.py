@@ -16,7 +16,7 @@ class Mastermind(Frame):
         self.couleur_vide = '#553823'
         self.nb_emplacements = 4
         self.dico_reponce = {0: '#ffffff', 1: '#000000'}
-        self.version_alt=True
+        self.version_alt=False
         #### initialisations ####
         self.emplacements = []
         self.emplacement_actif = 0
@@ -56,10 +56,10 @@ class Mastermind(Frame):
         self.emplacement_actif += 1
         self.prec_essai.append(couleur)
         if self.emplacement_actif != self.nb_emplacements: return
-        counter_local=self.count_reponse
         self.emplacement_actif = 0
         self.essais += 1
         if self.essais:
+            counter_local = self.count_reponse
             for e in range(self.nb_emplacements):
                 self.emplacements_prec_essai[e].configure(bg=self.couleurs[self.prec_essai[e]])
             if self.reponse == self.prec_essai:
@@ -68,6 +68,8 @@ class Mastermind(Frame):
             for i, e in enumerate(self.prec_essai):
                 if self.reponse[i] == e:
                     rep.append(1)
+                    if not self.version_alt:
+                        counter_local-=Counter((e,))
                 elif e in counter_local:
                     rep.append(0)
                     if not self.version_alt:
