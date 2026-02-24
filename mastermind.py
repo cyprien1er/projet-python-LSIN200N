@@ -69,6 +69,8 @@ class Mastermind(Frame):
                 if self.reponse[i] == e:
                     rep.append(1)
                     if not self.version_alt:
+                        if not e in counter_local:
+                            rep.remove(0)
                         counter_local-=Counter((e,))
                 elif e in counter_local:
                     rep.append(0)
