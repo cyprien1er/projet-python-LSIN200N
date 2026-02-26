@@ -27,6 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eff1dbb4-e10d-4ece-99b2-e8534ef815fb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/IA_draft.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mastermind.py" beforeDir="false" afterPath="$PROJECT_DIR$/mastermind.py" afterDir="false" />
     </list>
@@ -55,7 +56,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.scratch_7">
     <configuration name="mastermind" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="projet-python-LSIN200N" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,8 +78,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scratch_7" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="projet-python-LSIN200N" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scratch_7" />
         <item itemvalue="Python.mastermind" />
       </list>
     </recent_temporary>
@@ -169,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1772024431661</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ajout du nombre d'essais max">
+      <created>1772026701589</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1772026701589</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,29 +242,30 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="cleaning" />
     <MESSAGE value="bugfix du mod alt et ajout du degré de chaos" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix du mod alt et ajout du degré de chaos" />
+    <MESSAGE value="ajout du nombre d'essais max" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du nombre d'essais max" />
   </component>
   <component name="WindowStateProjectService">
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1771946146087">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1771946146087" />
-    <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1772026458213">
+    <state width="1259" height="237" key="GridCell.Tab.0.bottom" timestamp="1772103832271">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1772026458213" />
-    <state width="1259" height="163" key="GridCell.Tab.0.center" timestamp="1772026458213">
+    <state width="1259" height="237" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1772103832271" />
+    <state width="1259" height="237" key="GridCell.Tab.0.center" timestamp="1772103832271">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1772026458213" />
-    <state width="1259" height="163" key="GridCell.Tab.0.left" timestamp="1772026458213">
+    <state width="1259" height="237" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1772103832271" />
+    <state width="1259" height="237" key="GridCell.Tab.0.left" timestamp="1772103832271">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1772026458213" />
-    <state width="1259" height="163" key="GridCell.Tab.0.right" timestamp="1772026458213">
+    <state width="1259" height="237" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1772103832271" />
+    <state width="1259" height="237" key="GridCell.Tab.0.right" timestamp="1772103832271">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1772026458213" />
+    <state width="1259" height="237" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1772103832271" />
     <state x="86" y="37" key="MergeDialog" timestamp="1771945633621">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -251,10 +282,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1771773047098" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1772024437292">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1772026768680">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1772024437292" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1772026768680" />
+    <state x="246" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1772101582867">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="246" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1772101582867" />
     <state x="381" y="53" key="git4idea.branch.GitSmartOperationDialog" timestamp="1771773963703">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

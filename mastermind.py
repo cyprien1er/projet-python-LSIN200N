@@ -67,6 +67,8 @@ class Mastermind(Frame):
                 Label(Tk(), text=f'gagné en {self.essais} essais').pack()
             if self.essais>=self.essais_max:
                 Label(Tk(), text='perdu !').pack()
+                for e,r in zip(self.emplacements,self.reponse):
+                    e.configure(bg=self.couleurs[r])
                 return
             rep = []
             if not self.version_alt:
@@ -85,6 +87,7 @@ class Mastermind(Frame):
                 random.shuffle(rep)
             elif self.version_alt:
                 rep.sort()
+            print(self.prec_essai,rep)
             for i, p in enumerate(rep):
                 if p is not None:
                     self.can.create_oval(self.coins[i % self.side], self.coins[i // self.side],
