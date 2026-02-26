@@ -1,3 +1,4 @@
+
 """
 
 """
@@ -20,6 +21,8 @@ class Mastermind(Frame):
         self.chaos_degree=2
         self.essais_max=10
         #### initialisations ####
+        self.canvases = [] 
+        self.row_offset = 5 
         self.emplacements = []
         self.emplacement_actif = 0
         self.essais = -1
@@ -45,13 +48,13 @@ class Mastermind(Frame):
             self.emplacements[-1].grid(row=0, column=self.endroit_emplacement + i, sticky=EW)
         for i, c in enumerate(self.couleurs):
             Button(self, background=c, width=10, height=2, command=lambda couleur=i: self.jouer(couleur)) \
-                .grid(row=2, column=i + self.endroit_couleurs, sticky=EW)
-        Button(self, text='annuler', command=self.annuler).grid(row=3, column=self.nb_max // 2,
+                .grid(row=self.row_offset + self.essais_max + 1, column=i + self.endroit_couleurs, sticky=EW)
+        Button(self, text='annuler', command=self.annuler).grid(row=self.row_offset + self.essais_max + 2, column=self.nb_max // 2,
                                                                 columnspan=1 if self.nb_couleurs % 2 else 2)
-        Button(self, text='rejouer', command=self.rejouer).grid(row=3, column=self.endroit_couleurs)
-        Button(self, text='quiter', command=self.quit).grid(row=3, column=self.fin_couleurs)
+        Button(self, text='rejouer', command=self.rejouer).grid(row=self.row_offset + self.essais_max + 2, column=self.endroit_couleurs)
+        Button(self, text='quiter', command=self.quit).grid(row=self.row_offset + self.essais_max + 2, column=self.fin_couleurs)
         self.ale = Button(self, text='code aléatoire', command=self.rand)
-        self.ale.grid(row=4, column=self.nb_max // 2, columnspan=1 if self.nb_couleurs % 2 else 2)
+        self.ale.grid(row=self.row_offset + self.essais_max + 3, column=self.nb_max // 2, columnspan=1 if self.nb_couleurs % 2 else 2)
 
     def jouer(self, couleur):
         self.emplacements[self.emplacement_actif].configure(bg=self.couleurs[couleur])
@@ -61,8 +64,15 @@ class Mastermind(Frame):
         self.emplacement_actif = 0
         self.essais += 1
         if self.essais:
-            for e in range(self.nb_emplacements):
-                self.emplacements_prec_essai[e].configure(bg=self.couleurs[self.prec_essai[e]])
+            row = self.row_offset + self.essais
+            for i, couleur in enumerate(self.prec_essai):
+                case = Frame(self,
+                            height=75,
+                            width=75,
+                            bg=self.couleurs[couleur])
+                case.grid(row=row,
+                        column=self.endroit_emplacement + i,
+                        sticky=NSEW)
             if self.reponse == self.prec_essai:
                 Label(Tk(), text=f'gagné en {self.essais} essais').pack()
             if self.essais>=self.essais_max:
@@ -82,7 +92,13 @@ class Mastermind(Frame):
                     rep.append(0)
             if self.chaos_degree==2:
                 rep.extend([None] * ((self.side ** 2) - len(rep)))
-            self.can.delete(ALL)
+            
+            can = Canvas(self, height=75, bg='#aaaaaa', width=75)
+            can.grid(row=self.row_offset + self.essais,
+                     column=self.endroit_emplacement - 1,
+                     sticky=EW)
+            self.canvases.append(can)
+
             if self.chaos_degree!=0:
                 random.shuffle(rep)
             elif self.version_alt:
@@ -90,7 +106,7 @@ class Mastermind(Frame):
             print(self.prec_essai,rep)
             for i, p in enumerate(rep):
                 if p is not None:
-                    self.can.create_oval(self.coins[i % self.side], self.coins[i // self.side],
+                    can.create_oval(self.coins[i % self.side], self.coins[i // self.side],
                                          self.coins[i % self.side] + self.side * 5,
                                          self.coins[i // self.side] + self.side * 5,
                                          fill=self.dico_reponce[p])
@@ -110,9 +126,11 @@ class Mastermind(Frame):
         self.essais = -1
         self.prec_essai = []
         self.master.title('codage')
-        self.can.destroy()
+        for can in self.canvases:
+            can.destroy()
+        self.canvases = []
         self.ale = Button(self, text='code aléatoire', command=self.rand)
-        self.ale.grid(row=4, column=0, columnspan=self.nb_couleurs)
+        self.ale.grid(row=self.row_offset + self.essais_max + 3, column=0, columnspan=self.nb_couleurs)
         for ep, e in zip(self.emplacements_prec_essai, self.emplacements):
             ep.configure(bg='#eeeeee')
             e.configure(bg=self.couleur_vide)
