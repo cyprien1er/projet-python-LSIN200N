@@ -5,6 +5,7 @@ from tkinter import *
 import random
 from math import sqrt, ceil
 from collections import Counter
+import IA_draft
 
 
 class Mastermind(Frame):
@@ -20,6 +21,7 @@ class Mastermind(Frame):
         self.version_alt = False
         self.chaos_degree = 2
         self.essais_max = 10
+        self.IA_active = True
         #### initialisations ####
         self.canvases: list[Canvas] = []
         self.emplacements: list[Frame] = []
@@ -62,6 +64,8 @@ class Mastermind(Frame):
         self.emplacement_actif = 0
         self.essais += 1
         if self.essais:
+            if self.IA_active:
+                IA_draft.update_solutions(self.reponse, self.prec_essai)
             row = self.essais_max - self.essais
             for i, couleur in enumerate(self.prec_essai):
                 case = Frame(self, height=75, width=75, bg=self.couleurs[couleur])
@@ -101,6 +105,7 @@ class Mastermind(Frame):
                         r0 -= 1
                 elif e in self.reponse and self.version_alt:
                     r0 += 1
+
             self.rep_hist.append((r0, r1))
             rep = [0] * r0 + [1] * r1
             if self.chaos_degree == 2:
@@ -122,6 +127,7 @@ class Mastermind(Frame):
                                     fill=self.dico_reponce[p])
         else:
             self.enregister_reponce(self.prec_essai)
+
         self.wipe_prec_essai()
 
     def annuler(self):
@@ -157,11 +163,24 @@ class Mastermind(Frame):
         self.reponse = reponse
         self.count_reponse = Counter(reponse)
         self.ale.destroy()
+        if self.IA_active:
+            Button(self, text='suggestion', command=self.suggestion) \
+                .grid(row=self.essais_max + 3, column=self.endroit_couleurs)
+            Button(self, text="coup de l'IA", command=self.IA).grid(row=self.essais_max + 3, column=self.fin_couleurs)
 
     def wipe_prec_essai(self):
         for e in self.emplacements:
             e.configure(bg=self.couleur_vide)
         self.prec_essai = []
+
+    def suggestion(self):
+        e = IA_draft.set_solutions_possibles.pop()
+        IA_draft.set_solutions_possibles.add(e)
+        print(e)  # TODO il faudra trouver un meilleur affichage + tard
+
+    def IA(self):
+        for e in IA_draft.IA()[0]:
+            self.jouer(e)
 
 
 if __name__ == '__main__':
