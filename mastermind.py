@@ -11,6 +11,7 @@ class Mastermind(Frame):
     def __init__(self, boss=None):
         Frame.__init__(self, boss)
         self.pack()
+
         #### valeurs arbitraires ####
         self.couleurs = ['#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00aaee', '#ffaaee']
         self.couleur_vide = '#553823'
@@ -20,12 +21,13 @@ class Mastermind(Frame):
         self.chaos_degree = 2
         self.essais_max = 10
         #### initialisations ####
-        self.canvases = []
-        self.emplacements = []
+        self.canvases: list[Canvas] = []
+        self.emplacements: list[Frame] = []
+        self.historique: list[Frame] = []
+        self.rep_hist=[]
         self.emplacement_actif = 0
         self.essais = -1
         self.prec_essai = []
-        self.historique = []
         self.master.title('codage')
         #### valeurs précalculées ####
         self.nb_couleurs = len(self.couleurs)
@@ -62,14 +64,25 @@ class Mastermind(Frame):
         if self.essais:
             row = self.essais_max - self.essais
             for i, couleur in enumerate(self.prec_essai):
-                case = Frame(self,
-                             height=75,
-                             width=75,
-                             bg=self.couleurs[couleur])
-                case.grid(row=row,
-                          column=self.endroit_emplacement + i,
-                          sticky=NSEW)
+                case = Frame(self, height=75, width=75, bg=self.couleurs[couleur])
+                case.grid(row=row, column=self.endroit_emplacement + i, sticky=NSEW)
                 self.historique.append(case)
+            if self.winfo_screenheight() * 3 < self.winfo_reqheight() * 4:
+                for e in self.historique:
+                    e.configure(height=e.winfo_reqwidth()//2)
+                for c,(r0,r1) in zip(self.canvases,self.rep_hist):
+                    if r1 or r0:
+                        Frame(self,background=self.couleur_vide)\
+                            .grid(row=c.grid_info()['row'],column=self.endroit_emplacement - 1,sticky=NSEW)
+                    if r0:
+                        Label(self,text=str(r0),foreground='#ffffff',background=self.couleur_vide)\
+                            .grid(row=c.grid_info()['row'],column=self.endroit_emplacement - 1,sticky=W)
+                    if r1:
+                        Label(self, text=str(r1),background=self.couleur_vide) \
+                            .grid(row=c.grid_info()['row'], column=self.endroit_emplacement - 1, sticky=E)
+
+                    c.destroy()
+                self.canvases=[]
             if self.reponse == self.prec_essai:
                 Label(Tk(), text=f'gagné en {self.essais} essais').pack()
             if self.essais >= self.essais_max:
@@ -77,23 +90,24 @@ class Mastermind(Frame):
                 for e, r in zip(self.emplacements, self.reponse):
                     e.configure(bg=self.couleurs[r])
                 return
-            rep = []
+            r0=0
+            r1=0
             if not self.version_alt:
-                rep = [0] * sum((Counter(self.prec_essai) & self.count_reponse).values())
+                r0=sum((Counter(self.prec_essai) & self.count_reponse).values())
             for i, e in enumerate(self.prec_essai):
                 if self.reponse[i] == e:
-                    rep.append(1)
+                    r1+=1
                     if not self.version_alt:
-                        rep.remove(0)
+                        r0-=1
                 elif e in self.reponse and self.version_alt:
-                    rep.append(0)
+                    r0+=1
+            self.rep_hist.append((r0,r1))
+            rep=[0]*r0+[1]*r1
             if self.chaos_degree == 2:
                 rep.extend([None] * ((self.side ** 2) - len(rep)))
 
             can = Canvas(self, height=75, bg='#aaaaaa', width=75)
-            can.grid(row=row,
-                     column=self.endroit_emplacement - 1,
-                     sticky=EW)
+            can.grid(row=row, column=self.endroit_emplacement - 1, sticky=EW)
             self.canvases.append(can)
 
             if self.chaos_degree != 0:
@@ -127,9 +141,11 @@ class Mastermind(Frame):
         self.canvases = []
         self.ale = Button(self, text='code aléatoire', command=self.rand)
         self.ale.grid(row=self.essais_max + 3, column=0, columnspan=self.nb_couleurs)
-        for ep, e in zip(self.historique, self.emplacements):
+        for ep in self.historique:
             ep.destroy()
+        for e in self.emplacements:
             e.configure(bg=self.couleur_vide)
+
 
     def rand(self):
         self.enregister_reponce([random.randint(0, self.nb_couleurs - 1) for _ in range(len(self.emplacements))])
