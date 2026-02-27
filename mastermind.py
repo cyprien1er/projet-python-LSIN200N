@@ -27,6 +27,7 @@ class Mastermind(Frame):
         self.emplacements: list[Frame] = []
         self.historique: list[Frame] = []
         self.boutons_couleurs: list[Button] = []
+        self.remplacements_squeeze = []
         self.IA_2nd_try_opti = False
         self.rep_hist = []
         self.emplacement_actif = 0
@@ -84,14 +85,18 @@ class Mastermind(Frame):
                     e.configure(height=e.winfo_reqwidth() // 2)
                 for c, (r0, r1) in zip(self.canvases, self.rep_hist):
                     if r1 or r0:
-                        Frame(self, background=self.couleur_vide) \
-                            .grid(row=c.grid_info()['row'], column=self.endroit_emplacement - 1, sticky=NSEW)
+                        self.remplacements_squeeze.append(Frame(self, background=self.couleur_vide))
+                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
+                                                            column=self.endroit_emplacement - 1, sticky=NSEW)
                     if r0:
-                        Label(self, text=str(r0), foreground='#ffffff', background=self.couleur_vide) \
-                            .grid(row=c.grid_info()['row'], column=self.endroit_emplacement - 1, sticky=W)
+                        self.remplacements_squeeze.append(Label(self, text=str(r0), foreground='#ffffff',
+                                                                background=self.couleur_vide))
+                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
+                                                            column=self.endroit_emplacement - 1, sticky=W)
                     if r1:
-                        Label(self, text=str(r1), background=self.couleur_vide) \
-                            .grid(row=c.grid_info()['row'], column=self.endroit_emplacement - 1, sticky=E)
+                        self.remplacements_squeeze.append(Label(self, text=str(r1), background=self.couleur_vide))
+                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
+                                                            column=self.endroit_emplacement - 1, sticky=E)
 
                     c.destroy()
                 self.canvases = []
@@ -159,6 +164,11 @@ class Mastermind(Frame):
             ep.destroy()
         for e in self.emplacements:
             e.configure(bg=self.couleur_vide)
+        for e in self.remplacements_squeeze:
+            e.destroy()
+        self.historique = []
+        self.emplacements = []
+        self.remplacements_squeeze = []
 
     def rand(self):
         self.enregister_reponce([random.randint(0, self.nb_couleurs - 1) for _ in range(len(self.emplacements))])
