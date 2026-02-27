@@ -27,7 +27,7 @@ class Mastermind(Frame):
         self.emplacements: list[Frame] = []
         self.historique: list[Frame] = []
         self.boutons_couleurs: list[Button] = []
-        self.remplacements_squeeze = []
+        self.destroy_on_replay = []
         self.IA_2nd_try_opti = False
         self.rep_hist = []
         self.emplacement_actif = 0
@@ -85,18 +85,18 @@ class Mastermind(Frame):
                     e.configure(height=e.winfo_reqwidth() // 2)
                 for c, (r0, r1) in zip(self.canvases, self.rep_hist):
                     if r1 or r0:
-                        self.remplacements_squeeze.append(Frame(self, background=self.couleur_vide))
-                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
-                                                            column=self.endroit_emplacement - 1, sticky=NSEW)
+                        self.destroy_on_replay.append(Frame(self, background=self.couleur_vide))
+                        self.destroy_on_replay[-1].grid(row=c.grid_info()['row'],
+                                                        column=self.endroit_emplacement - 1, sticky=NSEW)
                     if r0:
-                        self.remplacements_squeeze.append(Label(self, text=str(r0), foreground='#ffffff',
-                                                                background=self.couleur_vide))
-                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
-                                                            column=self.endroit_emplacement - 1, sticky=W)
+                        self.destroy_on_replay.append(Label(self, text=str(r0), foreground='#ffffff',
+                                                            background=self.couleur_vide))
+                        self.destroy_on_replay[-1].grid(row=c.grid_info()['row'],
+                                                        column=self.endroit_emplacement - 1, sticky=W)
                     if r1:
-                        self.remplacements_squeeze.append(Label(self, text=str(r1), background=self.couleur_vide))
-                        self.remplacements_squeeze[-1].grid(row=c.grid_info()['row'],
-                                                            column=self.endroit_emplacement - 1, sticky=E)
+                        self.destroy_on_replay.append(Label(self, text=str(r1), background=self.couleur_vide))
+                        self.destroy_on_replay[-1].grid(row=c.grid_info()['row'],
+                                                        column=self.endroit_emplacement - 1, sticky=E)
 
                     c.destroy()
                 self.canvases = []
@@ -164,11 +164,13 @@ class Mastermind(Frame):
             ep.destroy()
         for e in self.emplacements:
             e.configure(bg=self.couleur_vide)
-        for e in self.remplacements_squeeze:
+        for e in self.destroy_on_replay:
             e.destroy()
         self.historique = []
-        self.emplacements = []
-        self.remplacements_squeeze = []
+        self.destroy_on_replay = []
+        if self.IA_active:
+            IA_draft.set_solutions_possibles=IA_draft.set_solutions.copy()
+            self.IA_2nd_try_opti=False
 
     def rand(self):
         self.enregister_reponce([random.randint(0, self.nb_couleurs - 1) for _ in range(len(self.emplacements))])
@@ -182,9 +184,10 @@ class Mastermind(Frame):
         self.count_reponse = Counter(reponse)
         self.ale.destroy()
         if self.IA_active:
-            Button(self, text='suggestion', command=self.suggestion) \
-                .grid(row=self.essais_max + 3, column=self.endroit_couleurs)
-            Button(self, text="coup de l'IA", command=self.IA).grid(row=self.essais_max + 3, column=self.fin_couleurs)
+            self.destroy_on_replay.append(Button(self, text='suggestion', command=self.suggestion))
+            self.destroy_on_replay[-1].grid(row=self.essais_max + 3, column=self.endroit_couleurs)
+            self.destroy_on_replay.append(Button(self, text="coup de l'IA", command=self.IA))
+            self.destroy_on_replay[-1].grid(row=self.essais_max + 3, column=self.fin_couleurs)
 
     def wipe_prec_essai(self):
         for e in self.emplacements:
