@@ -26,6 +26,7 @@ class Mastermind(Frame):
         self.canvases: list[Canvas] = []
         self.emplacements: list[Frame] = []
         self.historique: list[Frame] = []
+        self.IA_2nd_try_opti=False
         self.rep_hist = []
         self.emplacement_actif = 0
         self.essais = -1
@@ -64,6 +65,10 @@ class Mastermind(Frame):
         self.emplacement_actif = 0
         self.essais += 1
         if self.essais:
+            if self.IA_active:
+                if self.essais==1 and self.prec_essai==[0,1,2,3]:
+                    self.IA_2nd_try_opti=True
+                else:self.IA_2nd_try_opti=False
             if self.IA_active:
                 IA_draft.update_solutions(self.reponse, self.prec_essai)
             row = self.essais_max - self.essais
@@ -179,8 +184,12 @@ class Mastermind(Frame):
         print(e)  # TODO il faudra trouver un meilleur affichage + tard
 
     def IA(self):
-        for e in IA_draft.IA()[0]:
-            self.jouer(e)
+        if self.IA_2nd_try_opti:
+            for e in IA_draft.IA(True)[0]:
+                self.jouer(e)
+        else:
+            for e in IA_draft.IA()[0]:
+                self.jouer(e)
 
 
 if __name__ == '__main__':
