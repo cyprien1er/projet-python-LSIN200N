@@ -269,8 +269,7 @@ class Mastermind(Frame):
             for n, v in enumerate(var.liste):
                 self.setup_param(new_menu, n, '', v)
             new_menu.add_separator()
-            new_menu.add_command(label='-', command=lambda v=var, m=new_menu:
-            (print(v.pop()), print(v.get()), print(m.delete(len(v)))))
+            new_menu.add_command(label='-', command=lambda v=var, m=new_menu:(v.pop(), m.delete(len(v))))
             new_menu.add_command(label='+', command=lambda v=var, m=new_menu:
             (v.append(type(v[-1])()), self.setup_param(m, len(v) - 1, '', v[-1])))
 
@@ -297,13 +296,13 @@ class ColorVar(StringVar):
             else:
                 menu.entryconfigure(index, label=self.get(), foreground=self.get())
 
-        new_f = Tk()
+        new_f = Toplevel()
         e = Entry(new_f)
         e.grid(row=0, column=1, sticky=NSEW)
         e.insert(0, self.get())
         Label(new_f, text='Entrez la valeur :').grid(row=0, column=0, sticky=NSEW)
         Button(new_f, text='OK', command=func).grid(row=1, column=0, columnspan=2, sticky=NSEW)
-        new_f.mainloop()
+
 
 
 class ListVar(Variable):
