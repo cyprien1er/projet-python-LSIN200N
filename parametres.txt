@@ -1,1 +1,1 @@
-{"version_alt": false, "IA_active": true}
+{"version alt": false, "IA active": true, "nb emplacements": 4, "essais max": 10, "chaos degree": 2, "couleur vide": "#553823", "couleurs": ["#ffffff", "#000000", "#ff0000", "#00ff00", "#0000ff", "#ffff00", "#00aaee", "#ffaaee"]}

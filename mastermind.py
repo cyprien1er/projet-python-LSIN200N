@@ -34,14 +34,14 @@ class Mastermind(Frame):
         self.setup_menu()
 
         #### valeurs arbitraires ####
-        self.couleurs = ['#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00aaee', '#ffaaee']
-        self.couleur_vide = '#553823'
-        self.nb_emplacements = 4
+        self.couleurs = self.parametres["couleurs"]
+        self.couleur_vide = self.parametres["couleur vide"]
+        self.nb_emplacements = self.parametres["nb emplacements"]
         self.dico_reponce = ('#ffffff', '#000000')
-        self.version_alt = False
-        self.chaos_degree = 2
-        self.essais_max = 10
-        self.IA_active = True
+        self.version_alt = self.parametres["version alt"]
+        self.chaos_degree = self.parametres["chaos degree"]
+        self.essais_max = self.parametres["essais max"]
+        self.IA_active = self.parametres["IA active"]
         #### initialisations ####
         self.canvases: list[Canvas] = []
         self.emplacements: list[Frame] = []
