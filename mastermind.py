@@ -37,11 +37,11 @@ class Mastermind(Frame):
         self.couleurs = self.parametres["couleurs"]
         self.couleur_vide = self.parametres["couleur vide"]
         self.nb_emplacements = self.parametres["nb emplacements"]
-        self.dico_reponce = ('#ffffff', '#000000')
         self.version_alt = self.parametres["version alt"]
         self.chaos_degree = self.parametres["chaos degree"]
         self.essais_max = self.parametres["essais max"]
         self.IA_active = self.parametres["IA active"]
+        self.dico_reponce = ('#ffffff', '#000000')
         #### initialisations ####
         self.canvases: list[Canvas] = []
         self.emplacements: list[Frame] = []
@@ -103,7 +103,7 @@ class Mastermind(Frame):
             if self.winfo_screenheight() * 3 < self.winfo_reqheight() * 4:
                 for e in self.historique:
                     e.configure(height=e.winfo_reqwidth() // 2)
-                for c, (r0, r1) in zip(self.canvases, self.rep_hist):
+                for c, (r0, r1) in zip(self.canvases[::-1], self.rep_hist[::-1]):
                     if r1 or r0:
                         self.destroy_on_replay.append(Frame(self, background=self.couleur_vide))
                         self.destroy_on_replay[-1].grid(row=c.grid_info()['row'],
@@ -121,9 +121,9 @@ class Mastermind(Frame):
                     c.destroy()
                 self.canvases = []
             if self.reponse == self.prec_essai:
-                Label(Tk(), text=f'gagné en {self.essais} essais').pack()
+                Label(Toplevel(), text=f'gagné en {self.essais} essais').pack()
             if self.essais >= self.essais_max:
-                Label(Tk(), text='perdu !').pack()
+                Label(Toplevel(), text='perdu !').pack()
                 for e, r in zip(self.emplacements, self.reponse):
                     e.configure(bg=self.couleurs[r])
                 return
@@ -269,7 +269,7 @@ class Mastermind(Frame):
             for n, v in enumerate(var.liste):
                 self.setup_param(new_menu, n, '', v)
             new_menu.add_separator()
-            new_menu.add_command(label='-', command=lambda v=var, m=new_menu:(v.pop(), m.delete(len(v))))
+            new_menu.add_command(label='-', command=lambda v=var, m=new_menu: (v.pop(), m.delete(len(v))))
             new_menu.add_command(label='+', command=lambda v=var, m=new_menu:
             (v.append(type(v[-1])()), self.setup_param(m, len(v) - 1, '', v[-1])))
 
@@ -304,7 +304,6 @@ class ColorVar(StringVar):
         Button(new_f, text='OK', command=func).grid(row=1, column=0, columnspan=2, sticky=NSEW)
 
 
-
 class ListVar(Variable):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -334,6 +333,9 @@ class ListVar(Variable):
 
     def __len__(self):
         return len(self.liste)
+
+    def __setitem__(self, key, value):
+        self.liste[key].set(value)
 
 
 if __name__ == '__main__':
