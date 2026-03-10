@@ -28,6 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eff1dbb4-e10d-4ece-99b2-e8534ef815fb" name="Default Changelist" comment="système de sauvegarde&#10;&#10;correction du système de cyprien">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mastermind.py" beforeDir="false" afterPath="$PROJECT_DIR$/mastermind.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
       <recent name="C:\Users\Elève\OneDrive\Documents\GitHub\projet-python-LSIN200N" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.mastermind (2)">
+  <component name="RunManager" selected="Python.mastermind">
     <configuration name="IA_draft" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="projet-python-LSIN200N" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,8 +173,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.mastermind (2)" />
         <item itemvalue="Python.mastermind" />
+        <item itemvalue="Python.mastermind (2)" />
         <item itemvalue="Python.mastermind (1)" />
         <item itemvalue="Python.IA_draft" />
         <item itemvalue="Python.scratch_7" />
@@ -406,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1773145269382</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="bugfix">
+      <created>1773146201010</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1773146201010</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +464,6 @@
     <MESSAGE value="affichage visuel des suggestions" />
     <MESSAGE value="cleanup" />
     <MESSAGE value="bugfix du bouton rejouer" />
-    <MESSAGE value="bugfix" />
     <MESSAGE value="ajout d'une barre d'options et d'un fichier de parametres" />
     <MESSAGE value="vancances&#10;&#10;Travail que j'ai fait en vacances" />
     <MESSAGE value="bugfix&#10;&#10;solution à un bug qui survenait si on suprimait une couleur qu'on avait modifié" />
@@ -464,7 +471,8 @@
     <MESSAGE value="bugfix des squeeze après le 1er" />
     <MESSAGE value="autocréation de parametres.txt" />
     <MESSAGE value="système de sauvegarde&#10;&#10;correction du système de cyprien" />
-    <option name="LAST_COMMIT_MESSAGE" value="système de sauvegarde&#10;&#10;correction du système de cyprien" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="0" key="#Intentions" timestamp="1773066576448">
@@ -479,22 +487,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="471" y="241" key="Git.Rebase.Log.Action.NewCommitMessage.Dialog/0.0.1280.680@0.0.1280.680" timestamp="1772203938529" />
-    <state width="1259" height="217" key="GridCell.Tab.0.bottom" timestamp="1773145538999">
+    <state width="1259" height="217" key="GridCell.Tab.0.bottom" timestamp="1773146959480">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="217" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1773145538999" />
-    <state width="1259" height="217" key="GridCell.Tab.0.center" timestamp="1773145538999">
+    <state width="1259" height="217" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1773146959480" />
+    <state width="1259" height="217" key="GridCell.Tab.0.center" timestamp="1773146959480">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="217" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1773145538999" />
-    <state width="1259" height="217" key="GridCell.Tab.0.left" timestamp="1773145538998">
+    <state width="1259" height="217" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1773146959480" />
+    <state width="1259" height="217" key="GridCell.Tab.0.left" timestamp="1773146959479">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="217" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1773145538998" />
-    <state width="1259" height="217" key="GridCell.Tab.0.right" timestamp="1773145538999">
+    <state width="1259" height="217" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1773146959479" />
+    <state width="1259" height="217" key="GridCell.Tab.0.right" timestamp="1773146959480">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="217" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1773145538999" />
+    <state width="1259" height="217" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1773146959480" />
     <state x="86" y="37" key="MergeDialog" timestamp="1771945633621">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -511,10 +519,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1771773047098" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1773145271797">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1773146203048">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1773145271797" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1773146203048" />
     <state width="647" height="347" key="XDebugger.FullValuePopup" timestamp="1773053380546">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

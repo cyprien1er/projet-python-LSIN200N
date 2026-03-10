@@ -128,7 +128,7 @@ class Mastermind(Frame):
                 self.canvases = []
             if self.reponse == self.prec_essai:
                 Label(Toplevel(), text=f'gagné en {self.essais} essais').pack()
-            if self.essais >= self.essais_max:
+            elif self.essais >= self.essais_max:
                 Label(Toplevel(), text='perdu !').pack()
                 for e, r in zip(self.emplacements, self.reponse):
                     e.configure(bg=self.couleurs[r])
