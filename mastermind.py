@@ -207,6 +207,7 @@ class Mastermind(Frame):
 
     def rand(self):
         self.enregister_reponce([random.randint(0, self.nb_couleurs - 1) for _ in range(len(self.emplacements))])
+        self.historique_ints.extend(self.reponse)
         self.wipe_prec_essai()
         self.essais = 0
         self.emplacement_actif = 0
