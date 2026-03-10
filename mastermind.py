@@ -250,6 +250,8 @@ class Mastermind(Frame):
         menubar.add_cascade(label='Parametres', menu=menu_parametres)
         for i, (param, var) in enumerate(self.parametres_vars.items()):
             self.setup_param(menu_parametres, i, param, var)
+        menubar.add_command(label="Sauvegarder la partie", command=self.sauvegarder_partie)
+        menubar.add_command(label="Charger la partie", command=self.charger_partie)
 
     def setup_param(self, menu: Menu, i: int, param: str, var: Variable):
         if param:
