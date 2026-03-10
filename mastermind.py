@@ -29,8 +29,10 @@ class Mastermind(Frame):
                            "couleur vide": '#553823',
                            "couleurs": ['#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00aaee',
                                         '#ffaaee']}
-        with open("parametres.txt", "r") as parametres:
-            self.parametres |= load(parametres)
+        try:
+            with open("parametres.txt", "r") as parametres:
+                self.parametres |= load(parametres)
+        except FileNotFoundError:open("parametres.txt","w").close()
         self.setup_menu()
 
         #### valeurs arbitraires ####
@@ -237,7 +239,7 @@ class Mastermind(Frame):
         self.master.option_add('*tearOff', FALSE)
         menubar = Menu(self.master)
         self.master.config(menu=menubar)
-        menubar.add_command(label='Sauveguarder les options', command=self.sauguarder_les_option, underline=0)
+        menubar.add_command(label='Sauvegarder les options', command=self.sauguarder_les_option, underline=0)
         menu_parametres = Menu(menubar)
         menubar.add_cascade(label='Parametres', menu=menu_parametres)
         for i, (param, var) in enumerate(self.parametres_vars.items()):
