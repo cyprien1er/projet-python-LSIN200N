@@ -8,6 +8,7 @@ from collections import Counter
 import IA_draft
 from json import load, dump
 import re
+from tkinter import messagebox
 
 
 class Mastermind(Frame):
@@ -32,7 +33,7 @@ class Mastermind(Frame):
         try:
             with open("parametres.txt", "r") as parametres:
                 self.parametres |= load(parametres)
-        except FileNotFoundError:open("parametres.txt","w").close()
+        except:open("parametres.txt","w").close()
         self.setup_menu()
 
         #### valeurs arbitraires ####
@@ -171,7 +172,7 @@ class Mastermind(Frame):
         self.emplacements[self.emplacement_actif].configure(bg=self.couleur_vide)
         self.prec_essai.pop()
 
-    def sauguarder_les_option(self):
+    def saugarder_les_option(self):
         dico_params = {e: self.parametres_vars[e].get() for e in self.parametres_vars}
         with open("parametres.txt", "w") as parametres:
             dump(dico_params, parametres)
@@ -239,11 +240,13 @@ class Mastermind(Frame):
         self.master.option_add('*tearOff', FALSE)
         menubar = Menu(self.master)
         self.master.config(menu=menubar)
-        menubar.add_command(label='Sauvegarder les options', command=self.sauguarder_les_option, underline=0)
+        menubar.add_command(label='Sauvegarder les options', command=self.saugarder_les_option, underline=0)
         menu_parametres = Menu(menubar)
         menubar.add_cascade(label='Parametres', menu=menu_parametres)
         for i, (param, var) in enumerate(self.parametres_vars.items()):
             self.setup_param(menu_parametres, i, param, var)
+        menubar.add_command(label="Sauvegarder la partie", command=self.sauvegarder_partie)
+        menubar.add_command(label="Charger la partie", command=self.charger_partie)
 
     def setup_param(self, menu: Menu, i: int, param: str, var: Variable):
         if param:
@@ -274,6 +277,53 @@ class Mastermind(Frame):
             new_menu.add_command(label='-', command=lambda v=var, m=new_menu: (v.pop(), m.delete(len(v))))
             new_menu.add_command(label='+', command=lambda v=var, m=new_menu:
             (v.append(type(v[-1])()), self.setup_param(m, len(v) - 1, '', v[-1])))
+
+    def sauvegarder_partie(self):
+        data = {
+                    "reponse": self.reponse,
+                    "essais": self.essais,
+                    "rep_hist": self.rep_hist,
+                    "prec_essai": self.prec_essai,
+                    "emplacement_actif": self.emplacement_actif
+                }
+        with open("save.txt", "w") as f:
+            dump(data, f)
+        messagebox.showinfo("Sauvegarde", "Partie sauvegardée avec succès !")
+    def charger_partie(self):
+        try:
+            with open("save.txt", "r") as f:
+                data = load(f)
+        except FileNotFoundError:
+            messagebox.showerror("Erreur", "Aucune partie sauvegardée trouvée !")
+            return
+        
+        # Restaure les variables
+        self.reponse = data["reponse"]
+        self.essais = data["essais"]
+        self.rep_hist = data["rep_hist"]
+        self.prec_essai = data.get("prec_essai", [])
+        self.emplacement_actif = data.get("emplacement_actif", 0)
+
+        #Refait l'interface
+        for can in self.canvases:
+            can.destroy()
+        self.canvases = []
+
+        for ep in self.historique:
+            ep.destroy()
+        self.historique = []
+
+        for e in self.emplacements:
+            e.configure(bg=self.couleur_vide)
+
+        for e in self.destroy_on_replay:
+            e.destroy()
+        self.destroy_on_replay = []
+
+        for i, couleur_index in enumerate(self.prec_essai):
+            self.emplacements[i].configure(bg=self.couleurs[couleur_index])
+
+        messagebox.showinfo("Chargement", "Partie rechargée avec succès !")
 
 
 class bounded_IntVar(IntVar):
