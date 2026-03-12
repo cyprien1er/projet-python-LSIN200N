@@ -38,21 +38,21 @@ class Mastermind(Frame):
         self.setup_menu()
 
         #### valeurs arbitraires ####
-        self.couleurs = self.parametres["couleurs"]
-        self.couleur_vide = self.parametres["couleur vide"]
-        self.nb_emplacements = self.parametres["nb emplacements"]
-        self.version_alt = self.parametres["version alt"]
-        self.chaos_degree = self.parametres["chaos degree"]
-        self.essais_max = self.parametres["essais max"]
-        self.IA_active = self.parametres["IA active"]
+        self.couleurs: list[str] = self.parametres["couleurs"]
+        self.couleur_vide: str = self.parametres["couleur vide"]
+        self.nb_emplacements: int = self.parametres["nb emplacements"]
+        self.version_alt: bool = self.parametres["version alt"]
+        self.chaos_degree: int = self.parametres["chaos degree"]
+        self.essais_max: int = self.parametres["essais max"]
+        self.IA_active: bool = self.parametres["IA active"]
         self.dico_reponce = ('#ffffff', '#000000')
         #### initialisations ####
         self.canvases: list[Canvas] = []
         self.emplacements: list[Frame] = []
         self.historique: list[Frame] = []
         self.boutons_couleurs: list[Button] = []
-        self.destroy_on_replay = []
-        self.historique_ints = []
+        self.destroy_on_replay: list[Widget] = []
+        self.historique_ints: list[int] = []
         self.IA_2nd_try_opti = False
         self.rep_hist = []
         self.emplacement_actif = 0
@@ -241,6 +241,8 @@ class Mastermind(Frame):
         else:
             for e in IA_draft.IA()[0]:
                 self.jouer(e)
+        if len(IA_draft.set_solutions_possibles)==1:
+            print("l'ia a trouvé")
 
     def setup_menu(self):
         self.master.option_add('*tearOff', FALSE)
