@@ -56,7 +56,6 @@ def IA(is_2nd_try=False, pessimiste=True):
                 dict_reps[rep] = {solution}
         return essai, dict_reps
     best = ((), {}, 0)
-    espace_total = len(set_solutions_possibles)
     for essai in set_solutions:
         dict_reps = {}
         for solution in set_solutions_possibles:
@@ -71,7 +70,7 @@ def IA(is_2nd_try=False, pessimiste=True):
             res = sum(map(lambda x: log2(x) * x, map(len, dict_reps.values())))
 
         if best == ((), {}, 0) or res < best[-1] or \
-                (res == best[-1] and essai in set_solutions_possibles and best[1] not in set_solutions_possibles):
+                (res == best[-1] and essai in set_solutions_possibles and best[0] not in set_solutions_possibles):
             best = (essai, dict_reps, res)
     return best[:-1]
 
@@ -180,5 +179,4 @@ def vs2():
 
 
 if __name__ == '__main__':
-    vs1()
-    vs2()
+    print(IA(pessimiste=False))
