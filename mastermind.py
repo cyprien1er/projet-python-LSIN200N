@@ -20,6 +20,7 @@ class Mastermind(Frame):
         Frame.__init__(self, boss)
         self.pack()
         self.parametres_vars = {"version alt": BooleanVar(),
+                                "version triche" : BooleanVar(),
                                 "IA active": BooleanVar(),
                                 "nb emplacements": IntVar(),
                                 "essais max": IntVar(),
@@ -27,6 +28,7 @@ class Mastermind(Frame):
                                 "couleur vide": ColorVar(),
                                 "couleurs": ListVar()}
         self.parametres = {"version alt": False,
+                           "version triche" : False,
                            "IA active": True,
                            "nb emplacements": 4,
                            "essais max": 10,
@@ -83,6 +85,9 @@ class Mastermind(Frame):
                 Button(self, background=c, width=10, height=2, command=lambda couleur=i: self.jouer(couleur)))
             self.boutons_couleurs[-1].grid(row=self.essais_max + 1, column=i + self.endroit_couleurs, sticky=EW)
         Button(self, text='annuler', command=self.annuler).grid(row=self.essais_max + 2, column=self.nb_max // 2,
+                                                                columnspan=1 if self.nb_couleurs % 2 else 2)
+        if self.parametres["version triche"] == True:
+            Button(self, text='annuler essai', command=self.annuler_essai).grid(row=self.essais_max + 3, column=self.nb_max // 2,
                                                                 columnspan=1 if self.nb_couleurs % 2 else 2)
         Button(self, text='rejouer', command=self.rejouer).grid(row=self.essais_max + 2, column=self.endroit_couleurs)
         Button(self, text='quiter', command=self.master.destroy).grid(row=self.essais_max + 2, column=self.fin_couleurs)
@@ -180,6 +185,16 @@ class Mastermind(Frame):
         self.prec_essai.pop()
         self.historique_ints.pop()
 
+    def annuler_essai(self):
+        if len(self.historique_ints) <4 : return
+        self.emplacement_actif -= 4
+        for i in range(4):
+            self.historique_ints.pop()
+        precedent = [e for e in self.historique_ints]
+        self.rejouer()
+        for e in precedent:
+            self.jouer(e)
+        
     def saugarder_les_option(self):
         dico_params = {e: self.parametres_vars[e].get() for e in self.parametres_vars}
         with open("parametres.txt", "w") as parametres:
