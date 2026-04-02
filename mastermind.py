@@ -187,7 +187,6 @@ class Mastermind(Frame):
 
     def annuler_essai(self):
         if len(self.historique_ints) <8 : return
-        self.emplacement_actif = 0
         for i in range(4):
             self.historique_ints.pop()
             self.historique[-1].destroy()
