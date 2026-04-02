@@ -186,14 +186,16 @@ class Mastermind(Frame):
         self.historique_ints.pop()
 
     def annuler_essai(self):
-        if len(self.historique_ints) <4 : return
-        self.emplacement_actif -= 4
+        if len(self.historique_ints) <8 : return
+        self.emplacement_actif = 0
         for i in range(4):
             self.historique_ints.pop()
-        precedent = [e for e in self.historique_ints]
-        self.rejouer()
-        for e in precedent:
-            self.jouer(e)
+            self.historique[-1].destroy()
+            self.historique.pop()
+        dernier = self.canvases[-1]
+        dernier.destroy()
+        self.canvases.pop()
+        self.essais -= 1
         
     def saugarder_les_option(self):
         dico_params = {e: self.parametres_vars[e].get() for e in self.parametres_vars}
