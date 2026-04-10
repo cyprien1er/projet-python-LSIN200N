@@ -1,5 +1,5 @@
 """
-
+Groupe MI-4 - Mastermind
 """
 from tkinter import *
 import random

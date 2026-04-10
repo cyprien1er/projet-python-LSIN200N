@@ -1,5 +1,31 @@
 """
+File used for all AI related code, imported in main
+TODO: implement Knuth's 5 Guess Algorithm and Expected Size Algoritm
 
+Knuth's algorithm minimizes worst case while expected size algorithm minimizes the average number of guesses (worst case is 6 guesses instead of 5)
+
+Knuth's 5 guess algorithm:
+Initialize: Start with the set of all possible codes (1296 for standard Mastermind)
+Make the first guess: Knuth showed that starting with 1122 is optimal (though any first guess leads to the same worst-case bound)
+Get feedback: Receive the response
+Eliminate inconsistent codes: Remove all codes from the possibility set that wouldn't give the same feedback if they were the answer
+Choose next guess using minimax:
+
+For each possible guess (from all 1296 codes, not just remaining possibilities):
+
+For each possible feedback that guess could receive:
+
+Count how many codes in the remaining set would give that feedback
+
+
+The worst case for this guess is the maximum count across all feedbacks
+
+
+Pick the guess with the smallest worst case
+Tiebreaker: prefer guesses that are still possible answers
+
+
+Repeat until solved
 """
 from collections import Counter
 import random
